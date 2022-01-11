@@ -6,6 +6,15 @@ import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroup";
 
 export default function Poster(props) {
+  const addLike = () => {
+    props.addLiked(props.id);
+  };
+
+  const removeLike = () => {
+    console.log(props.id);
+    props.removeLiked(props.id);
+  };
+
   let imageURL = `https://image.tmdb.org/t/p/original/${props.poster}`;
   return (
     <Card style={{ width: "18rem" }}>
@@ -19,8 +28,12 @@ export default function Poster(props) {
         <ListGroupItem>Release: {props.release}</ListGroupItem>
       </ListGroup>
       <Card.Body>
-        <Card.Link href='#'>Card Link</Card.Link>
-        <Card.Link href='#'>Another Link</Card.Link>
+        <Card.Text>
+          <button onClick={addLike}>Add</button>
+        </Card.Text>
+        <Card.Text>
+          <button onClick={removeLike}>Remove</button>
+        </Card.Text>
       </Card.Body>
     </Card>
   );
