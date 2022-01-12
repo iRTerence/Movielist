@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
+import "./Poster.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
@@ -37,22 +38,21 @@ export default function Poster(props) {
 
   let imageURL = `https://image.tmdb.org/t/p/original/${props.poster}`;
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "18rem" }} className='poster'>
       <Card.Img variant='top' src={imageURL} />
       <Card.Body>
-        <Card.Title>{props.title}</Card.Title>
-      </Card.Body>
-      <Card.Body>
-        <Card.Text>
+        <div className='thumbs'>
           <FontAwesomeIcon
+            className='thumbs-up'
             style={likeActive ? { color: "green" } : null}
             icon={faThumbsUp}
             onClick={addLike}></FontAwesomeIcon>
           <FontAwesomeIcon
+            className='thumbs-down'
             style={dislikeActive ? { color: "red" } : null}
             icon={faThumbsDown}
             onClick={removeLike}></FontAwesomeIcon>
-        </Card.Text>
+        </div>
       </Card.Body>
     </Card>
   );

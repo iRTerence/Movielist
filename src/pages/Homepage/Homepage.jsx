@@ -1,7 +1,7 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Poster from "../../components/Poster/Poster";
-import { Link } from "react-router-dom";
+import "./Homepage.css";
 
 export default function Homepage(props) {
   function listMovies() {
@@ -27,7 +27,7 @@ export default function Homepage(props) {
 
   return (
     <div>
-      <Row>{listMovies()}</Row>
+      <Row className='row'>{listMovies()}</Row>
     </div>
   );
 }

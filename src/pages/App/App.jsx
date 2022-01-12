@@ -61,7 +61,9 @@ function App() {
                 }
               />
             </>
-          ) : null}
+          ) : (
+            <></>
+          )}
         </Routes>
       </Container>
     </div>

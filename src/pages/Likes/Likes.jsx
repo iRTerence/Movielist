@@ -1,7 +1,7 @@
 import React from "react";
 import Poster from "../../components/Poster/Poster";
 import Row from "react-bootstrap/Row";
-
+import "./Likes.css";
 export default function Likes(props) {
   let likedList = props.movies.map((movie) => {
     if (props.liked.includes(movie.id)) {
@@ -22,9 +22,19 @@ export default function Likes(props) {
     }
   });
 
-  return (
+  let display = (
     <div>
-      <Row>{likedList}</Row>
+      {props.liked.length > 0 ? (
+        <div>
+          <Row className='row-l'>{likedList}</Row>
+        </div>
+      ) : (
+        <div>
+          <h1>You do not have any liked posters!</h1>
+        </div>
+      )}
     </div>
   );
+
+  return <div>{display}</div>;
 }

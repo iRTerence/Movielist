@@ -1,0 +1,10 @@
+.row {
+  justify-content: space-between;
+  --bs-gutter-x: 0 !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .row {
+    justify-content: center;
+  }
+}
