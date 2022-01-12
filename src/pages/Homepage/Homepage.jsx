@@ -1,15 +1,15 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Poster from "../../components/Poster/Poster";
+import { Link } from "react-router-dom";
 
 export default function Homepage(props) {
-  console.log(props);
   function listMovies() {
     let poster = props.movies.map((movies) => {
       return (
         <Poster
-          className='box'
+          className='poster'
+          liked={props.liked}
           key={movies.id}
           id={movies.id}
           title={movies.original_title}
@@ -27,7 +27,6 @@ export default function Homepage(props) {
 
   return (
     <div>
-      <h1>Movie Lists!!</h1>
       <Row>{listMovies()}</Row>
     </div>
   );

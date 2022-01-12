@@ -1,18 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import ListGroup from "react-bootstrap/ListGroup";
-import ListGroupItem from "react-bootstrap/ListGroup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function Poster(props) {
+  let [likeActive, setLikeActive] = useState(false);
+  let [dislikeActive, setDislikeActive] = useState(false);
+
+  useEffect(() => {
+    if (props.liked.includes(props.id)) {
+      setLikeActive(true);
+    }
+  }, []);
+
   const addLike = () => {
-    props.addLiked(props.id);
+    if (likeActive === true) {
+      setLikeActive(false);
+      props.removeLiked(props.id);
+    } else {
+      props.addLiked(props.id);
+      setLikeActive(true);
+      setDislikeActive(false);
+    }
   };
 
   const removeLike = () => {
-    console.log(props.id);
-    props.removeLiked(props.id);
+    if (dislikeActive === true) {
+      setDislikeActive(false);
+    } else {
+      setDislikeActive(true);
+      setLikeActive(false);
+      props.removeLiked(props.id);
+    }
   };
 
   let imageURL = `https://image.tmdb.org/t/p/original/${props.poster}`;
@@ -21,18 +41,17 @@ export default function Poster(props) {
       <Card.Img variant='top' src={imageURL} />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
-        <Card.Text>{props.overview}</Card.Text>
       </Card.Body>
-      <ListGroup className='list-group-flush'>
-        <ListGroupItem>Rating: {props.rating}</ListGroupItem>
-        <ListGroupItem>Release: {props.release}</ListGroupItem>
-      </ListGroup>
       <Card.Body>
         <Card.Text>
-          <button onClick={addLike}>Add</button>
-        </Card.Text>
-        <Card.Text>
-          <button onClick={removeLike}>Remove</button>
+          <FontAwesomeIcon
+            style={likeActive ? { color: "green" } : null}
+            icon={faThumbsUp}
+            onClick={addLike}></FontAwesomeIcon>
+          <FontAwesomeIcon
+            style={dislikeActive ? { color: "red" } : null}
+            icon={faThumbsDown}
+            onClick={removeLike}></FontAwesomeIcon>
         </Card.Text>
       </Card.Body>
     </Card>

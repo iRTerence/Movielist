@@ -3,8 +3,8 @@ import Homepage from "../Homepage/Homepage";
 import Likes from "../Likes/Likes";
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
-import { Route, Switch } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, Routes } from "react-router-dom";
+import Nav from "../../components/Nav/Nav";
 
 function App() {
   let [movies, setMovies] = useState([]);
@@ -12,11 +12,7 @@ function App() {
   let [loaded, setLoaded] = useState(false);
 
   let addLiked = (id) => {
-    if (liked.includes(id)) {
-      return null;
-    } else {
-      setLiked([...liked, id]);
-    }
+    if (!liked.includes(id)) setLiked([...liked, id]);
   };
 
   let removeLiked = (id) => {
@@ -36,19 +32,37 @@ function App() {
   return (
     <div className='App'>
       <Container>
-        {/* <div>
-          <Likes />
-        </div> */}
-
-        {loaded ? (
-          <Homepage
-            movies={movies}
-            addLiked={addLiked}
-            removeLiked={removeLiked}
-          />
-        ) : (
-          <></>
-        )}
+        <Nav />
+        <Routes>
+          {loaded ? (
+            <>
+              <Route
+                exact
+                path='/'
+                element={
+                  <Homepage
+                    movies={movies}
+                    liked={liked}
+                    addLiked={addLiked}
+                    removeLiked={removeLiked}
+                  />
+                }
+              />
+              <Route
+                exact
+                path='/liked'
+                element={
+                  <Likes
+                    movies={movies}
+                    removeLiked={removeLiked}
+                    addLiked={addLiked}
+                    liked={liked}
+                  />
+                }
+              />
+            </>
+          ) : null}
+        </Routes>
       </Container>
     </div>
   );
