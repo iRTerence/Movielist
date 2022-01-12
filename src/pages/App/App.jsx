@@ -47,8 +47,8 @@ function App() {
           {loaded ? (
             <>
               <Route
-                exact
                 path='/'
+                exact
                 element={
                   <Homepage
                     movies={movies}
@@ -62,8 +62,8 @@ function App() {
                 }
               />
               <Route
-                exact
                 path='/liked'
+                exact
                 element={
                   <Likes
                     movies={movies}

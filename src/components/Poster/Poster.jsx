@@ -14,7 +14,6 @@ export default function Poster(props) {
       setLikeActive(true);
     }
     if (props.disliked.includes(props.id)) {
-      console.log(props.disliked);
       setDislikeActive(true);
     }
   }, [props.liked, props.disliked, props.id]);
