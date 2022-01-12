@@ -10,11 +10,11 @@ export default function NavBar() {
       <Navbar variant='dark' className='nav-bar'>
         <Container>
           <Navbar.Brand className='title'>Popular Movie Posters</Navbar.Brand>
-          <Nav className='me-auto'>
-            <NavLink exact to='/'>
+          <Nav className=''>
+            <NavLink exact to='/' className='nav-link'>
               Home
             </NavLink>
-            <NavLink exact to='/liked'>
+            <NavLink exact to='/liked' className='nav-link'>
               Liked
             </NavLink>
           </Nav>

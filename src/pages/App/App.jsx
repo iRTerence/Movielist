@@ -9,6 +9,7 @@ import Nav from "../../components/Nav/Nav";
 function App() {
   let [movies, setMovies] = useState([]);
   let [liked, setLiked] = useState([]);
+  let [disliked, setDisliked] = useState([]);
   let [loaded, setLoaded] = useState(false);
 
   let addLiked = (id) => {
@@ -18,6 +19,15 @@ function App() {
   let removeLiked = (id) => {
     let updatedLikes = liked.filter((likes) => likes !== id);
     setLiked(updatedLikes);
+  };
+
+  let addDisliked = (id) => {
+    if (!disliked.includes(id)) setDisliked([...disliked, id]);
+  };
+
+  let removeDisliked = (id) => {
+    let updatedDislikes = disliked.filter((likes) => likes !== id);
+    setDisliked(updatedDislikes);
   };
 
   useEffect(() => {
@@ -43,8 +53,11 @@ function App() {
                   <Homepage
                     movies={movies}
                     liked={liked}
+                    disliked={disliked}
                     addLiked={addLiked}
                     removeLiked={removeLiked}
+                    addDisliked={addDisliked}
+                    removeDisliked={removeDisliked}
                   />
                 }
               />
@@ -57,6 +70,7 @@ function App() {
                     removeLiked={removeLiked}
                     addLiked={addLiked}
                     liked={liked}
+                    disliked={disliked}
                   />
                 }
               />

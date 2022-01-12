@@ -8,15 +8,14 @@ export default function Likes(props) {
       return (
         <Poster
           liked={props.liked}
+          disliked={props.disliked}
           key={movie.id}
           id={movie.id}
-          title={movie.original_title}
           poster={movie.poster_path}
-          rating={movie.vote_average}
-          release={movie.release_date}
-          overview={movie.overview}
           addLiked={props.addLiked}
           removeLiked={props.removeLiked}
+          addDisliked={props.addDisliked}
+          removeDisliked={props.removeDisliked}
         />
       );
     }
@@ -29,8 +28,8 @@ export default function Likes(props) {
           <Row className='row-l'>{likedList}</Row>
         </div>
       ) : (
-        <div>
-          <h1>You do not have any liked posters!</h1>
+        <div className='message'>
+          <h3>You do not have any liked posters!</h3>
         </div>
       )}
     </div>

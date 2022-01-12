@@ -10,15 +10,14 @@ export default function Homepage(props) {
         <Poster
           className='poster'
           liked={props.liked}
+          disliked={props.disliked}
           key={movies.id}
           id={movies.id}
-          title={movies.original_title}
           poster={movies.poster_path}
-          rating={movies.vote_average}
-          release={movies.release_date}
-          overview={movies.overview}
           addLiked={props.addLiked}
           removeLiked={props.removeLiked}
+          addDisliked={props.addDisliked}
+          removeDisliked={props.removeDisliked}
         />
       );
     });

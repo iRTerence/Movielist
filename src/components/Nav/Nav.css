@@ -6,3 +6,11 @@
 .title {
   color: #e1e1e1;
 }
+
+.active-link {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.nav-link {
+  color: #e1e1e1;
+}

@@ -13,7 +13,11 @@ export default function Poster(props) {
     if (props.liked.includes(props.id)) {
       setLikeActive(true);
     }
-  }, []);
+    if (props.disliked.includes(props.id)) {
+      console.log(props.disliked);
+      setDislikeActive(true);
+    }
+  }, [props.liked, props.disliked, props.id]);
 
   const addLike = () => {
     if (likeActive === true) {
@@ -21,6 +25,7 @@ export default function Poster(props) {
       props.removeLiked(props.id);
     } else {
       props.addLiked(props.id);
+      props.removeDisliked(props.id);
       setLikeActive(true);
       setDislikeActive(false);
     }
@@ -29,10 +34,12 @@ export default function Poster(props) {
   const removeLike = () => {
     if (dislikeActive === true) {
       setDislikeActive(false);
+      props.removeDisliked(props.id);
     } else {
       setDislikeActive(true);
       setLikeActive(false);
       props.removeLiked(props.id);
+      props.addDisliked(props.id);
     }
   };
 
